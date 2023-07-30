@@ -26,11 +26,20 @@ public class askHowManySlotsController {
             public void actionPerformed(ActionEvent e) {
                 String numSlotsStr = askView.getNumSlot();
                 try {
+                    
                     int numSlots = Integer.parseInt(numSlotsStr);
-                    JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots: " + numSlots);
+                    if (numSlots >= 8) {
+                        JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots: " + numSlots);
+                    } else {
+                        JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots should be at least 8.");
+                    }
+
                 } catch (NumberFormatException ex) {
                     // Handle invalid input
-                    JOptionPane.showMessageDialog(askView.getFrame() , "Invalid input. Please enter a valid number.");
+                    JOptionPane.showMessageDialog(askView.getFrame(), "Invalid input. Please enter a valid number.");
+                } catch (IllegalArgumentException ex) {
+                    // Handle input less than 8
+                    JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots should be at least 8.");
                 }
             }
         });
