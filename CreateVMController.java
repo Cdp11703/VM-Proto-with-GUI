@@ -29,7 +29,6 @@ public class CreateVMController {
         this.CreateVMV.setSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                askHowManySlotsView askSlots = new askHowManySlotsView();
             }
         });
     }
