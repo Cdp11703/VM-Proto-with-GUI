@@ -67,38 +67,16 @@ public class askHowManySlotsView{
         this.frame.setVisible(true);
     }
 
+    public JFrame getFrame() { // for the option pane functionality in the controller
+        return this.frame;
+    }
+
     public void setSubmitBtnListener(ActionListener actn) {
         this.submitBtn.addActionListener(actn);
     }
 
-    public static void main(String[] args) {
-        // Run the GUI on the Event Dispatch Thread
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                askHowManySlotsView view = new askHowManySlotsView();
-    
-                view.setSubmitBtnListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        // Get the number of slots from the text field
-                        String input = view.askSlotText.getText();
-                        try {
-                            int numSlots = Integer.parseInt(input);
-                            if (numSlots < 8) {
-                                // Handle the case where the input is less than 8
-                                JOptionPane.showMessageDialog(view.frame, "Number of Slots should be at least 8.");
-                            } else {
-                                // Continue with the rest of the logic
-                                JOptionPane.showMessageDialog(view.frame, "Number of Slots: " + numSlots);
-                            }
-                        } catch (NumberFormatException ex) {
-                            // Handle invalid input
-                            JOptionPane.showMessageDialog(view.frame, "Invalid input. Please enter a valid slot number.");
-                        }
-                    }
-                });
-            }
-        });
+    public String getNumSlot(){
+        return this.askSlotText.getText();
     }
+
 }
