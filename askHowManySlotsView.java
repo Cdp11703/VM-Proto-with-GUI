@@ -77,7 +77,7 @@ public class askHowManySlotsView{
             @Override
             public void run() {
                 askHowManySlotsView view = new askHowManySlotsView();
-
+    
                 view.setSubmitBtnListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -85,10 +85,16 @@ public class askHowManySlotsView{
                         String input = view.askSlotText.getText();
                         try {
                             int numSlots = Integer.parseInt(input);
-                            JOptionPane.showMessageDialog(view.frame, "Number of Slots: " + numSlots);
+                            if (numSlots < 8) {
+                                // Handle the case where the input is less than 8
+                                JOptionPane.showMessageDialog(view.frame, "Number of Slots should be at least 8.");
+                            } else {
+                                // Continue with the rest of the logic
+                                JOptionPane.showMessageDialog(view.frame, "Number of Slots: " + numSlots);
+                            }
                         } catch (NumberFormatException ex) {
                             // Handle invalid input
-                            JOptionPane.showMessageDialog(view.frame, "Invalid input. Please enter a valid number.");
+                            JOptionPane.showMessageDialog(view.frame, "Invalid input. Please enter a valid slot number.");
                         }
                     }
                 });
