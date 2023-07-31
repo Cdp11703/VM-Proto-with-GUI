@@ -13,39 +13,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.BoxLayout;
 
-public class CreateVMView {
+public class CreateVMView extends BaseView {
 
-    private JFrame frame;
     private JButton RegularVMBtn, SpecialVMBtn;
 
     public CreateVMView() {
-        this.frame = new JFrame("Choose a VM to create");
-
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
-        this.frame.setResizable(false);
-        this.frame.setSize(300, 200);
-
-        // Set the icon image
-        try {
-            InputStream iconStream = CreateVMView.class.getResourceAsStream("VM-removebg-preview.png");
-            Image iconImage = ImageIO.read(iconStream);
-            this.frame.setIconImage(iconImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Set the background image
-        try {
-            InputStream bgStream = CreateVMView.class.getResourceAsStream("Vending Machine Pattern.jpg");
-            Image bgImage = ImageIO.read(bgStream);
-            JLabel background = new JLabel(new ImageIcon(bgImage));
-            background.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-            this.frame.setContentPane(background);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+        super();
 
         // Rest of the code remains the same
         this.RegularVMBtn = new JButton("Regular Vending Machine");
@@ -65,10 +39,10 @@ public class CreateVMView {
         panel2.add(SpecialVMBtn);
         panel2.setPreferredSize(new Dimension(300, 40));
 
-        this.frame.add(panel1);
-        this.frame.add(panel2);
+        super.getFrame().add(panel1);
+        super.getFrame().add(panel2);
 
-        this.frame.setVisible(true);
+        super.getFrame().setVisible(true);
     }
 
     public void setRegularVMBtnListener(ActionListener actn) {

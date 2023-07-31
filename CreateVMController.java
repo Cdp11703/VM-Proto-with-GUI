@@ -24,12 +24,14 @@ public class CreateVMController {
             public void actionPerformed(ActionEvent e) {  
                 askHowManySlotsView askSlotsV = new askHowManySlotsView();
                 askHowManySlotsController askSlotC = new askHowManySlotsController(askSlotsV);
+                CreateVMV.getFrame().setVisible(false);
             }
         });
 
         this.CreateVMV.setSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               
             }
         });
     }

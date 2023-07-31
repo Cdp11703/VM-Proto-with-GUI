@@ -9,43 +9,16 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class MenuView {
+public class MenuView extends BaseView{
 
-    private JFrame frame;
     private JButton createBtn, exitBtn;
     private JLabel noteLabel;
 
     public MenuView() {
-        this.frame = new JFrame("Vending Machine");
 
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
-        this.frame.setResizable(false);
-        this.frame.setSize(300, 300);
+        super();
 
-        // Set the icon image
-        try {
-            InputStream iconStream = MenuView.class.getResourceAsStream("VM-removebg-preview.png");
-            Image iconImage = ImageIO.read(iconStream);
-            this.frame.setIconImage(iconImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Set the background image
-        try {
-            InputStream bgStream = MenuView.class.getResourceAsStream("Vending Machine Pattern.jpg");
-            Image bgImage = ImageIO.read(bgStream);
-            JLabel background = new JLabel(new ImageIcon(bgImage));
-            background.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-            this.frame.setContentPane(background);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        // Rest of the code remains the same
+        // Rest of the code remains thesame
         this.createBtn = new JButton("Create a Vending Machine");
         this.createBtn.setPreferredSize(new Dimension(200, 30));
 
@@ -90,11 +63,11 @@ public class MenuView {
         panel3.setPreferredSize(new Dimension(300, 100));
         panel3.add(scrollPane);
 
-        this.frame.add(panel1);
-        this.frame.add(panel2);
-        this.frame.add(panel3);
+        super.getFrame().add(panel1);
+        super.getFrame().add(panel2);
+        super.getFrame().add(panel3);
 
-        this.frame.setVisible(true);
+        super.getFrame().setVisible(true);
     }
 
     public void setCreateBtnListener(ActionListener actn) {

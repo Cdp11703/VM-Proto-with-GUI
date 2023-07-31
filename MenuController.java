@@ -26,9 +26,10 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				CreateVMView createView = new CreateVMView();
 				CreateVMController createController = new CreateVMController(createView);
+				MV.getFrame().setVisible(false); // Move this line outside the actionPerformed method
 			}
-			
 		});
+		
 
         this.MV.setExitBtnListener(new ActionListener() {
 			@Override

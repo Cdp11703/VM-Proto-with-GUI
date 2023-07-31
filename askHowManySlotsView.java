@@ -8,42 +8,15 @@ import java.io.InputStream;
 import javax.swing.*;
 import java.awt.*;
 
-public class askHowManySlotsView{
+public class askHowManySlotsView extends BaseView{
     
-    private JFrame frame;
-    private JButton submitBtn;
+    private JButton submitBtn, cancelBtn;
     private JLabel askSlotLabel;
     private JTextField askSlotText;
 
     public askHowManySlotsView() {
-        this.frame = new JFrame("Vending Machine");
-
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
-        this.frame.setResizable(false);
-        this.frame.setSize(300, 150);
-
-        // Set the icon image
-        try {
-            InputStream iconStream = MenuView.class.getResourceAsStream("VM-removebg-preview.png");
-            Image iconImage = ImageIO.read(iconStream);
-            this.frame.setIconImage(iconImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Set the background image
-        try {
-            InputStream bgStream = MenuView.class.getResourceAsStream("Vending Machine Pattern.jpg");
-            Image bgImage = ImageIO.read(bgStream);
-            JLabel background = new JLabel(new ImageIcon(bgImage));
-            background.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-            this.frame.setContentPane(background);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+       
+        super();
 
         this.askSlotLabel = new JLabel(" How many number of Slots ?:");
         this.askSlotLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -54,25 +27,28 @@ public class askHowManySlotsView{
         this.submitBtn.setBackground(Color.PINK);
         this.submitBtn.setPreferredSize(new Dimension(200, 30));
 
+        this.cancelBtn = new JButton("Cancel");
+        this.cancelBtn.setBackground(Color.PINK);
+        this.cancelBtn.setPreferredSize(new Dimension(200, 30));
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 1, 0, 0));
+        panel.setLayout(new GridLayout(4, 1, 1, 1));
         panel.setBackground(Color.PINK);
         panel.add(askSlotLabel);
         panel.add(askSlotText);
         panel.add(submitBtn);
+        panel.add(cancelBtn);
 
-        this.frame.add(panel);
-       
-
-        this.frame.setVisible(true);
-    }
-
-    public JFrame getFrame() { // for the option pane functionality in the controller
-        return this.frame;
+        super.getFrame().add(panel);
+        super.getFrame().setVisible(true);
     }
 
     public void setSubmitBtnListener(ActionListener actn) {
         this.submitBtn.addActionListener(actn);
+    }
+
+    public void setCancelBtnListener(ActionListener actn) {
+        this.cancelBtn.addActionListener(actn);
     }
 
     public String getNumSlot(){

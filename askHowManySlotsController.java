@@ -43,6 +43,16 @@ public class askHowManySlotsController {
                 }
             }
         });
+
+
+        this.askView.setCancelBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateVMView createView = new CreateVMView();
+				CreateVMController createController = new CreateVMController(createView);
+				askView.getFrame().setVisible(false); 
+            }
+        });
     }
 
     public static void main(String[] args) {
