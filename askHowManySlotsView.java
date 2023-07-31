@@ -8,14 +8,22 @@ import java.io.InputStream;
 import javax.swing.*;
 import java.awt.*;
 
-public class askHowManySlotsView extends BaseView{
+/**
+ * A view class that displays a window to ask the user for the number of slots.
+ * This class extends the BaseView class.
+ */
+
+public class askHowManySlotsView extends BaseView {
     
     private JButton submitBtn, cancelBtn;
     private JLabel askSlotLabel;
     private JTextField askSlotText;
 
+    /**
+     * This will construct the askHowManySlotsView and initializes its components.
+     * It will set up a window to ask the user for the number of slots.
+     */
     public askHowManySlotsView() {
-       
         super();
 
         this.askSlotLabel = new JLabel(" How many number of Slots ?:");
@@ -43,16 +51,31 @@ public class askHowManySlotsView extends BaseView{
         super.getFrame().setVisible(true);
     }
 
+    /**
+     * This will set the ActionListener for the submit button.
+     * 
+     * @param actn The ActionListener to be set for the submit button.
+     */
     public void setSubmitBtnListener(ActionListener actn) {
         this.submitBtn.addActionListener(actn);
     }
 
+    /**
+     * This will set the ActionListener for the cancel button.
+     * 
+     * @param actn The ActionListener to be set for the cancel button.
+     */
     public void setCancelBtnListener(ActionListener actn) {
         this.cancelBtn.addActionListener(actn);
     }
 
-    public String getNumSlot(){
+    /**
+     * This will gets the text entered in the askSlotText field.
+     * 
+     * @return The text entered in the askSlotText field.
+     */
+    public String getNumSlot() {
         return this.askSlotText.getText();
     }
-
 }
+

@@ -14,19 +14,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.BoxLayout;
 
+/**
+ * This is the controller class for the askHowManySlotsView.
+ */
 public class askHowManySlotsController {
 
     private askHowManySlotsView askView;
 
+    /**
+     * This will construct an askHowManySlotsController with the given askHowManySlotsView.
+     * 
+     * @param askView The askHowManySlotsView instance to associate with the controller.
+     */
     public askHowManySlotsController(askHowManySlotsView askView) {
         this.askView = askView;
 
+        // ActionListener for the submitBtn
         this.askView.setSubmitBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String numSlotsStr = askView.getNumSlot();
                 try {
-                    
                     int numSlots = Integer.parseInt(numSlotsStr);
                     if (numSlots >= 8) {
                         JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots: " + numSlots);
@@ -35,26 +43,33 @@ public class askHowManySlotsController {
                     }
 
                 } catch (NumberFormatException ex) {
-                    // Handle invalid input
+                    // Handles invalid input
                     JOptionPane.showMessageDialog(askView.getFrame(), "Invalid input. Please enter a valid number.");
                 } catch (IllegalArgumentException ex) {
-                    // Handle input less than 8
+                    // Handles input less than 8
                     JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots should be at least 8.");
                 }
             }
         });
 
-
+        // ActionListener for the cancelBtn
         this.askView.setCancelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Open the CreateVMView
                 CreateVMView createView = new CreateVMView();
-				CreateVMController createController = new CreateVMController(createView);
-				askView.getFrame().setVisible(false); 
+                CreateVMController createController = new CreateVMController(createView);
+                // Hide the askHowManySlotsView
+                askView.getFrame().setVisible(false);
             }
         });
     }
 
+    /**
+     * a main method to launch the application.
+     * 
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         askHowManySlotsView askView = new askHowManySlotsView();
         askHowManySlotsController askController = new askHowManySlotsController(askView);

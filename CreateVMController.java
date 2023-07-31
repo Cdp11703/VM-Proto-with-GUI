@@ -1,34 +1,38 @@
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.imageio.ImageIO;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.swing.BoxLayout;
 
+
+/**
+ * The CreateVMController class is a controller class that handles user interactions with the CreateVMView.
+ * It will listen to events from the view and responds accordingly by creating new views and controllers.
+ */
 public class CreateVMController {
-    private CreateVMView CreateVMV;
+    private CreateVMView createVMView;
 
-    public CreateVMController(CreateVMView CreateVMView) {
-        this.CreateVMV = CreateVMView;
+    /**
+     * This constructs a new CreateVMController object with the specified CreateVMView.
+     * It sets up listeners for buttons in the view and responds to button clicks accordingly.
+     *
+     * @param createVMView The CreateVMView associated with this controller.
+     */
+    public CreateVMController(CreateVMView createVMView) {
+        this.createVMView = createVMView;
 
-        this.CreateVMV.setRegularVMBtnListener(new ActionListener() {
+        // This will set up the regular vending machine button listener
+        this.createVMView.setRegularVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {  
-                askHowManySlotsView askSlotsV = new askHowManySlotsView();
-                askHowManySlotsController askSlotC = new askHowManySlotsController(askSlotsV);
-                CreateVMV.getFrame().setVisible(false);
+                // Create and display the "askHowManySlots" view and its controller
+                askHowManySlotsView askSlotsView = new askHowManySlotsView();
+                askHowManySlotsController askSlotController = new askHowManySlotsController(askSlotsView);
+                
+                // Hide the current view
+                createVMView.getFrame().setVisible(false);
             }
         });
 
-        this.CreateVMV.setSpecialVMBtnListener(new ActionListener() {
+        // This will set up the special vending machine button listener
+        this.createVMView.setSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                
