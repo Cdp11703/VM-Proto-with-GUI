@@ -12,7 +12,7 @@ import java.awt.*;
  * The BaseView class represents a base class for views in the Vending Machine application.
  * It provides common functionality and properties for all views in the application.
  */
-public abstract class BaseView{
+public class BaseView{
 
     private JFrame frame;
 
