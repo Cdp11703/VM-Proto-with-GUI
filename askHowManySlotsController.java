@@ -20,14 +20,17 @@ import javax.swing.BoxLayout;
 public class askHowManySlotsController {
 
     private askHowManySlotsView askView;
+    private RegularVMController regVend;
 
     /**
      * This will construct an askHowManySlotsController with the given askHowManySlotsView.
      * 
      * @param askView The askHowManySlotsView instance to associate with the controller.
      */
-    public askHowManySlotsController(askHowManySlotsView askView) {
+    public askHowManySlotsController(askHowManySlotsView askView, RegularVMView regView) {
         this.askView = askView;
+        this.regVend = regVend;
+
 
         // ActionListener for the submitBtn
         this.askView.setSubmitBtnListener(new ActionListener() {
@@ -37,7 +40,12 @@ public class askHowManySlotsController {
                 try {
                     int numSlots = Integer.parseInt(numSlotsStr);
                     if (numSlots >= 8) {
+                        
                         JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots: " + numSlots);
+                        askView.getFrame().setVisible(false);
+                        regView.setSlots(numSlots);
+                        regView.getFrame().setVisible(true);
+                        
                     } else {
                         JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots should be at least 8.");
                     }
@@ -72,7 +80,11 @@ public class askHowManySlotsController {
      */
     public static void main(String[] args) {
         askHowManySlotsView askView = new askHowManySlotsView();
-        askHowManySlotsController askController = new askHowManySlotsController(askView);
+        
+        RegularVMView regView = new RegularVMView();
+        
+        RegularVMController regControl = new RegularVMController(regView);
+        askHowManySlotsController askController = new askHowManySlotsController(askView, regView);
     }
 }
 

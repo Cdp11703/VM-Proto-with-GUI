@@ -24,10 +24,14 @@ public class CreateVMController {
             public void actionPerformed(ActionEvent e) {  
                 // Create and display the "askHowManySlots" view and its controller
                 askHowManySlotsView askSlotsView = new askHowManySlotsView();
-                askHowManySlotsController askSlotController = new askHowManySlotsController(askSlotsView);
-                
+                RegularVMView regView = new RegularVMView();
+                RegularVMController regCon = new RegularVMController(regView);
+                askHowManySlotsController askSlotController = new askHowManySlotsController(askSlotsView, regView);
+
                 // Hide the current view
                 createVMView.getFrame().setVisible(false);
+                
+               
             }
         });
 
