@@ -45,6 +45,7 @@ public class askHowManySlotsController {
                         askView.getFrame().setVisible(false);
                         regView.setSlots(numSlots);
                         regView.getFrame().setVisible(true);
+
                         
                     } else {
                         JOptionPane.showMessageDialog(askView.getFrame(), "Number of Slots should be at least 8.");
@@ -82,9 +83,9 @@ public class askHowManySlotsController {
         askHowManySlotsView askView = new askHowManySlotsView();
         
         RegularVMView regView = new RegularVMView();
-        
-        RegularVMController regControl = new RegularVMController(regView);
         askHowManySlotsController askController = new askHowManySlotsController(askView, regView);
+
+        
     }
 }
 

@@ -39,7 +39,9 @@ public class CreateVMController {
         this.createVMView.setSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+               SpecialVMView specialVend = new SpecialVMView();
+               createVMView.getFrame().setVisible(false);
+               specialVend.getFrame().setVisible(true);
             }
         });
     }

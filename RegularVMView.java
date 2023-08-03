@@ -41,7 +41,9 @@ public class RegularVMView{
         panel2.setBackground(Color.BLUE);
         panel2.setLayout(new GridLayout(numSlots/4, 4, 10, 10));
 
-        updateButtonsPanel2();
+        
+
+        //updateButtonsPanel2();
 
         panel3 = new JPanel();
         panel3.setBackground(Color.BLUE);
@@ -51,7 +53,7 @@ public class RegularVMView{
         this.frameVend.add(panel1, BorderLayout.NORTH);
         this.frameVend.add(panel2, BorderLayout.CENTER);
         this.frameVend.add(panel3, BorderLayout.SOUTH);
-       
+    
 
 
     }
@@ -72,36 +74,59 @@ public class RegularVMView{
 
             // Add the button to the panel
             panel2.add(btn);
-
-            btn.addActionListener(new CustomActionListener(i));
+            btn.addActionListener(new addActionsToButtons(i));
             
         }
     }
 
+    
 
-    class CustomActionListener implements ActionListener {
+    class addActionsToButtons implements ActionListener {
         private int buttonIndex;
     
         // Constructor to initialize the buttonIndex when creating the ActionListener
-        public CustomActionListener(int buttonIndex) {
+        public addActionsToButtons(int buttonIndex) {
             this.buttonIndex = buttonIndex;
         }
     
-        // The actionPerformed method is called when the button is clicked
         @Override
         public void actionPerformed(ActionEvent e) {
             // The code inside this method will be executed when the button is clicked
-    
-            JOptionPane.showMessageDialog(frameVend, "You have chosen\n Slot:" + buttonIndex + "\n\nWhat would you want to do with it?");
-            
-
-    
+        
+            String[] options = {
+                    "Set Item(Name, Price, Calories) for Slot",
+                    "Set Quantity for Slot",
+                    "Buy from this Slot"
+            };
+        
+            int choice = JOptionPane.showOptionDialog(
+                    frameVend,                                   // Parent component
+                    "You have chosen\n Slot:" + buttonIndex + "\n\nWhat would you want to do with it?", // Message
+                    "Options",                                  // Title
+                    JOptionPane.YES_NO_CANCEL_OPTION,            // Option type (Yes, No, and Cancel buttons)
+                    JOptionPane.QUESTION_MESSAGE,               // Message type (Question icon)
+                    null,                                      // Use default icon for custom options
+                    options,                                   // Custom options
+                    options[0]                                 // Default selected option
+            );
+        
+            if (choice == JOptionPane.YES_OPTION) {
+                // User chose "Set Item(Name, Price, Calories) for Slot"
+                // Add your code here for handling this choice
+            } else if (choice == JOptionPane.NO_OPTION) {
+                // User chose "Set Quantity for Slot"
+                // Add your code here for handling this choice
+            } else if (choice == JOptionPane.CANCEL_OPTION) {
+                // User chose "Buy from Slot"
+                // Add your code here for handling this choice
+            }
         }
+
     }
-    
+   
     public int getSlots(){
         return numSlots;
     }
 
-   
+
 }
